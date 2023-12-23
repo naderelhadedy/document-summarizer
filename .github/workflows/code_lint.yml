@@ -1,0 +1,26 @@
+name: Code Lint Workflow
+
+on: [push, pull_request]
+
+jobs:
+  Code-Lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint==3.0.1
+
+      - name: Run Pylint
+        run: |
+          pylint --output-format=colorized ./src/
+

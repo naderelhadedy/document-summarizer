@@ -1,0 +1,17 @@
+name: PR Commit Lint Workflow
+
+on: [pull_request]
+
+jobs:
+  PR-Commit-Lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run PR Commit Lint
+        uses: amannn/action-semantic-pull-request@v4.5.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          validateSingleCommit: true
+          validateSingleCommitMatchesPrTitle: true
+
